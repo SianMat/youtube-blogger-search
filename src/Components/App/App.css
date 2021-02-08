@@ -1,0 +1,10 @@
+.App {
+  widtH: 100%;
+  display: grid;
+  grid-template: 100% / 300px 1fr;
+  justify-items: center;
+}
+.filterBar {
+  width: 100%;
+  background-color: pink;
+}
