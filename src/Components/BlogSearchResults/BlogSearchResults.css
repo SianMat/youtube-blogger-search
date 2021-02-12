@@ -1,0 +1,42 @@
+.blogResult * {
+  color: unset !important;
+}
+
+.blogResult {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  height: 200px;
+  background-color: lightgray;
+  overflow-y: hidden;
+}
+
+.blogTitle {
+  background-color: pink;
+  border-bottom: black 2px solid;
+}
+
+.blogIntro {
+  flex-shrink: 1;
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 10px;
+  background-image: linear-gradient(to bottom, transparent, gray);
+}
+
+#viewMore {
+  background-color: pink;
+  border: none;
+  border-top: black 2px solid;
+  text-align: center;
+  width: 100%;
+  cursor: pointer;
+  flex-shrink: 0;
+  flex-grow: 0;
+  transition-duration: 0.5s;
+}
+
+#viewMore:hover {
+  background-color: turquoise;
+}

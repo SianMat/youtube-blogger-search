@@ -1,6 +1,6 @@
 const searchResults = {
   kind: "youtube#searchListResponse",
-  etag: "JAV8IZw05PWDZBlLK7ME1rJf9y0",
+  etag: "KQqO0TcfKlkRaUSzWuOcozanK4E",
   regionCode: "GB",
   pageInfo: {
     totalResults: 8,
