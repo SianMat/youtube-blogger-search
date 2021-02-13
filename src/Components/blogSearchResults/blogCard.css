@@ -2,7 +2,7 @@
   color: unset !important;
 }
 
-.blogResult {
+.blogResult.card {
   display: flex;
   flex-direction: column;
   width: 90%;

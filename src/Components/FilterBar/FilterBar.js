@@ -1,20 +1,16 @@
 import React from "react";
-import "./FilterBar.css";
+import "./filterBar.css";
 import Collapsible from "react-collapsible";
-
-const subjects = {
-  Maths: {
-    Number: ["Fractions", "Decimals", "Percentages"],
-    Graphs: ["Linear Graphs"],
-    Calculus: ["Differentiation", "Integration"],
-  },
-  Science: {},
-};
+import subjects from "./subjects";
+import FilterBarHeader from "./filterBarHeader";
 
 function FilterBar(props) {
-
   function renderLessons(lessons) {
-    return lessons.map((lesson) => <li className="searchTerm" onClick={props.onClick}>{lesson}</li>);
+    return lessons.map((lesson) => (
+      <li className="searchTerm" onClick={props.onClick}>
+        {lesson}
+      </li>
+    ));
   }
 
   function renderTopics(topics) {
@@ -33,7 +29,7 @@ function FilterBar(props) {
   function renderSubjects(subjects) {
     let filterList = [];
     for (const subject in subjects) {
-      const subjectHeading = <h2 className="subjectHeading">{subject}</h2>;
+      const subjectHeading = <h2 key={subject} className="subjectHeading">{subject}</h2>;
       filterList.push(
         <div className="subject">
           <Collapsible trigger={subjectHeading}>
@@ -47,7 +43,7 @@ function FilterBar(props) {
 
   return (
     <div className="filterBar">
-      <h1>Filter by topic</h1>
+      <FilterBarHeader searchTerm={props.searchTerm} />
       {renderSubjects(subjects)}
     </div>
   );

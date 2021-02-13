@@ -1,29 +1,29 @@
 import "./App.css";
 
-import SearchResultsList from "../SearchResultsList/SearchResultList";
-import FilterBar from "../FilterBar/FilterBar";
-import youtubeSearch from "../../util/youtube";
-import bloggerSearch from "../../util/blogger";
+import SearchResultsList from "../searchResultsList/searchResultList";
+import FilterBar from "../filterBar/filterBar";
+import searchForResults from "./searchForResults";
 import React from "react";
-import BlogContent from "../BlogSearchResults/BlogContent";
+import BlogContent from "../blogSearchResults/blogContent";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       currentSearchTerm: "",
-      searches: {},
-      oxMathResults: [],
-      kiducationResults: [],
-      blogResults: [],
+      searches: {}, //store all previous searches to save searching again
+      oxMathResults: [], //results from OxMath tutorials for current search term
+      kiducationResults: [], //results from Kiducation youTube for current search term
+      blogResults: [], //results from Kiducation blog for current search term
       fullScreenBlogMode: false,
-      targetBlogContents: "",
+      targetBlogContents: "", //blog contents from blog snippet 'view more'
       targetBlogTitle: "",
+      gridWidth: 0, //number of grids to display depending on search results from each source
     };
-    this.searchForResults = this.searchForResults.bind(this);
     this.handleBlogClick = this.handleBlogClick.bind(this);
   }
 
+  //view full screen blog when 'view more' is clicked from blog snippet
   handleBlogClick(e) {
     this.setState({
       fullScreenBlogMode: !this.state.fullScreenBlogMode,
@@ -32,6 +32,7 @@ class App extends React.Component {
     });
   }
 
+  //render full screen blog if relevant button has been clicked
   fullScreenBlog() {
     if (!this.state.fullScreenBlogMode) {
       return;
@@ -45,77 +46,42 @@ class App extends React.Component {
     );
   }
 
-  async searchForResults(e) {
-    const searchTerm = e.target.innerHTML;
-    //if new search term is current search term, return without doing anything
-    if (searchTerm === this.state.currentSearchTerm) {
-      return;
-    }
-    //else find results for current search term
-    let blogResults = [];
-    let oxMathResults = [];
-    let kiducationResults = [];
-    //only search if searchTerm has not already been used
-    if (!this.state.searches.hasOwnProperty(searchTerm)) {
-      const allSearches = await Promise.all([
-        bloggerSearch(e.target.innerHTML),
-        youtubeSearch(
-          e.target.innerHTML,
-          "UCFPUEHFAgnkp86HGVkc3l9A",
-          "AIzaSyCIlwORFT3Rz5N4NkrhdEk1sz_OkiMj_Cw"
-        ),
-        youtubeSearch(
-          e.target.innerHTML,
-          "UCnWm2gOPjApqc5E0AhQvQ0Q",
-          "AIzaSyCXS0AXhqzQHu85FObMwDSGi-uwbIq8Ldo"
-        ),
-      ]);
-      const blogSearch = allSearches[0];
-      const oxMathSearch = allSearches[1];
-      const kiducationSearch = allSearches[2];
-      const existingSearches = this.state.searches;
-      const newSearch = {
-        blogResults: blogSearch,
-        kiducationResults: kiducationSearch,
-        oxMathResults: oxMathSearch,
+  //set the number of columns to display based on results from each source
+  setGridStyles() {
+    if (this.state.gridWidth) {
+      return {
+        gridTemplate: `100% / 200px repeat(${this.state.gridWidth},1fr)`,
       };
-      existingSearches[searchTerm] = newSearch;
-      //add new search term and results to state for future use
-      this.setState({ searches: existingSearches });
+    } else {
+      return { gridTemplate: `100% / 200px 1fr` };
     }
-    //set state to current search term results
-    blogResults = this.state.searches[searchTerm].blogResults;
-    oxMathResults = this.state.searches[searchTerm].oxMathResults;
-    kiducationResults = this.state.searches[searchTerm].kiducationResults;
-    this.setState({
-      oxMathResults: oxMathResults,
-      kiducationResults: kiducationResults,
-      blogResults: blogResults,
-    });
   }
+
+  //only render each list if there are any results for current search term
+  renderList(results, name, type) {
+    if (results.length) {
+      return (
+        <SearchResultsList
+          className="searchResultsList"
+          channelName={name}
+          searchResults={results}
+          type={type}
+          handleClick={this.handleBlogClick}
+        />
+      );
+    }
+  }
+
   render() {
     return (
-      <div className="App">
-        <FilterBar onClick={this.searchForResults} />
-        <SearchResultsList
-          className="searchResultsList"
-          channelName="OxMath Tutorials"
-          searchResults={this.state.oxMathResults}
-          type="video"
+      <div className="App" style={this.setGridStyles()}>
+        <FilterBar
+          onClick={searchForResults.bind(this)}
+          searchTerm={this.state.currentSearchTerm}
         />
-        <SearchResultsList
-          className="searchResultsList"
-          channelName="Kiducation"
-          searchResults={this.state.kiducationResults}
-          type="video"
-        />
-        <SearchResultsList
-          className="searchResultsList"
-          channelName="Blog"
-          searchResults={this.state.blogResults}
-          handleClick={this.handleBlogClick}
-          type="blog"
-        />
+        {this.renderList(this.state.oxMathResults, "OxMath Tutorials", "video")}
+        {this.renderList(this.state.kiducationResults, "Kiducation", "video")}
+        {this.renderList(this.state.blogResults, "Blog", "blog")}
         {this.fullScreenBlog()}
       </div>
     );

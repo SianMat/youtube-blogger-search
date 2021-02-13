@@ -5,6 +5,11 @@ async function bloggerSearch(searchTerm) {
   const request = `https://blogger.googleapis.com/v3/blogs/${blogId}/posts/search?q=${searchTerm}&key=${ApiKey}`
   const response = await fetch(request);
   const body = await response.json();
+  if(body.items){
+    return body.items;
+  }
+  return [];
+
   // return [
   //   {
   //     kind: "blogger#post",
@@ -138,7 +143,6 @@ async function bloggerSearch(searchTerm) {
   //     etag: '"dGltZXN0YW1wOiAxNTAwODg1MjM2MDk2Cm9mZnNldDogMzYwMDAwMAo"',
   //   },
   // ];
-  return body.items;
 }
 
 export default bloggerSearch;

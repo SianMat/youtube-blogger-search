@@ -1,6 +1,5 @@
 import React from "react";
-import "./BlogSearchResults.css";
-import BlogIntro from "./BlogIntro";
+import Blogcard from "./blogCard";
 
 function BlogSearchResults(props) {
   function createBlogList() {
@@ -10,21 +9,12 @@ function BlogSearchResults(props) {
       for (const blog in searchResults) {
         const title = searchResults[blog].title;
         const content = searchResults[blog].content;
-        // const url = searchResults[blog].url;
-
         blogList.push(
-          <div className="blogResult card">
-            <h1 className="cardTitle blogTitle">{title}</h1>
-            <BlogIntro content={content} />
-            <button
-              id="viewMore"
-              content={content}
-              title={title}
-              onClick={props.handleClick}
-            >
-              View more
-            </button>
-          </div>
+          <Blogcard
+            title={title}
+            content={content}
+            handleClick={props.handleClick}
+          />
         );
       }
     } else {
@@ -33,9 +23,7 @@ function BlogSearchResults(props) {
     return blogList;
   }
 
-  return (
-      <div className={props.className}>{createBlogList()}</div>
-  );
+  return <div className={props.className}>{createBlogList()}</div>;
 }
 
 export default BlogSearchResults;
