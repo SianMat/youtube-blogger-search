@@ -16,7 +16,7 @@ const subjects = {
       "Order of Operations",
     ],
     Measuring: ["Length", "Time", "Money"],
-    Graphs: ["Linear Graphs"],
+    Graphs: ["Linear Graphs", "Trig Graphs"],
     Equations: [
       "Linear Equations",
       "Quadratic Equations",
@@ -24,7 +24,7 @@ const subjects = {
       "Logarithms",
       "Simultaneous Equations",
     ],
-    Shape: ["Trigonometry", "Trig Graphs"],
+    Shape: ["Trigonometry"],
     Sequences: ["Geometric Sequences", "Arithmetic Sequences"],
     Calculus: ["Differentiation", "Integration"],
   },
@@ -33,12 +33,19 @@ const subjects = {
     Animals: ["Crocodiles", "Minibeasts"],
   },
   Geography: {
-    Countries: ["Belize"],
-    "Sporting Events": ["Olympcs Rio 2016", "European Cup"],
+    Countries: ["Countries", "Flags", "Barbados", "Bahamas", "Belize"],
+    "Sporting Events": ["Olympcs Rio 2016", "Euro 2016"],
   },
   General: {
-    "Early Learning": ["Alphabet", "Fruit","Shapes", "Action words"],
-    Crafts: ["How to make a mini pond","How to make a punpkin", "How to make kinder chocolate bowls", "How to make a caterpillar", "How to make a butterfly", "How to make a spider"],
+    "Early Learning": ["Alphabet", "Names of Fruits", "Shapes", "Action words"],
+    Crafts: [
+      "How to make a mini pond",
+      "How to make a pumpkin",
+      "How to make kinder chocolate bowls",
+      "How to make a caterpillar",
+      "How to make a butterfly",
+      "How to make a spider",
+    ],
   },
 };
 export default subjects;

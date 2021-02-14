@@ -3,15 +3,15 @@ import VideoCard from "./videoCard";
 function videoSearchResults(props) {
   let videoList = [];
 
-  for (const video in props.searchResults) {
-    const title = props.searchResults[video].snippet.title;
-    const description = props.searchResults[video].snippet.description;
-    const videoId = props.searchResults[video].id.videoId;
-
+  props.searchResults.forEach((video) => {
     videoList.push(
-      <VideoCard title={title} description={description} videoId={videoId} />
+      <VideoCard
+        title={video.title}
+        description={video.description}
+        videoId={video.videoId}
+      />
     );
-  }
+  });
 
   return <div className={props.className}>{videoList}</div>;
 }

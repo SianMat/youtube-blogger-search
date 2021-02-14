@@ -11,9 +11,10 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     let searches = {};
+    //retrieve search results from previous searches stored in local storage
     if (store.has("searches")) {
       searches = store.get("searches");
-    };
+    }
     this.state = {
       currentSearchTerm: "",
       searches: searches, //store all previous searches to save searching again
@@ -77,6 +78,20 @@ class App extends React.Component {
     }
   }
 
+  renderWelcome() {
+    if (this.state.gridWidth === 0) {
+      return (
+        <div className="welcome">
+          <span style={{ fontSize: "7rem", color: "darkmagenta" }}>
+            Welcome!
+          </span>
+          To search for one of my videos or blogs, select a topic from the menu
+          on the left
+        </div>
+      );
+    }
+  }
+
   render() {
     return (
       <div className="App" style={this.setGridStyles()}>
@@ -87,6 +102,7 @@ class App extends React.Component {
         {this.renderList(this.state.oxMathResults, "OxMath Tutorials", "video")}
         {this.renderList(this.state.kiducationResults, "Kiducation", "video")}
         {this.renderList(this.state.blogResults, "Blog", "blog")}
+        {this.renderWelcome()}
         {this.fullScreenBlog()}
       </div>
     );

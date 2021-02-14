@@ -3,23 +3,18 @@ import Blogcard from "./blogCard";
 
 function BlogSearchResults(props) {
   function createBlogList() {
-    const searchResults = props.searchResults;
     let blogList = [];
-    if (searchResults) {
-      for (const blog in searchResults) {
-        const title = searchResults[blog].title;
-        const content = searchResults[blog].content;
-        blogList.push(
-          <Blogcard
-            title={title}
-            content={content}
-            handleClick={props.handleClick}
-          />
-        );
-      }
-    } else {
-      blogList = "No results found";
-    }
+
+    props.searchResults.forEach((blog) => {
+      blogList.push(
+        <Blogcard
+          title={blog.title}
+          content={blog.content}
+          handleClick={props.handleClick}
+        />
+      );
+    });
+
     return blogList;
   }
 

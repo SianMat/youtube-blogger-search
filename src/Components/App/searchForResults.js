@@ -18,7 +18,6 @@ async function searchForResults(e) {
   let allSearches = [];
   //only search if searchTerm has not already been used
   if (!this.state.searches.hasOwnProperty(searchTerm)) {
-    alert("new search required");
     allSearches = await Promise.all([
       bloggerSearch(e.target.innerHTML),
       youtubeSearch(
