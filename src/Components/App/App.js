@@ -5,13 +5,18 @@ import FilterBar from "../filterBar/filterBar";
 import searchForResults from "./searchForResults";
 import React from "react";
 import BlogContent from "../blogSearchResults/blogContent";
+import store from "storejs";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
+    let searches = {};
+    if (store.has("searches")) {
+      searches = store.get("searches");
+    };
     this.state = {
       currentSearchTerm: "",
-      searches: {}, //store all previous searches to save searching again
+      searches: searches, //store all previous searches to save searching again
       oxMathResults: [], //results from OxMath tutorials for current search term
       kiducationResults: [], //results from Kiducation youTube for current search term
       blogResults: [], //results from Kiducation blog for current search term

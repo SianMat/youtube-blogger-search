@@ -1,7 +1,15 @@
 async function youtubeSearch(searchTerm, channelId, ApiKey) {
   const request = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&maxResults=10&q=${searchTerm}&type=video&key=${ApiKey}`;
-  const response = await fetch(request);
-  const body = await response.json();
+  let body = [];
+  try {
+    const response = await fetch(request);
+    if (response.ok) {
+      body = await response.json();
+    }
+  } catch (error) {
+    console.log(error);
+  }
+
   return body.items;
   // return [
   //   {

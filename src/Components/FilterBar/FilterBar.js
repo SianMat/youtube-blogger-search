@@ -7,7 +7,7 @@ import FilterBarHeader from "./filterBarHeader";
 function FilterBar(props) {
   function renderLessons(lessons) {
     return lessons.map((lesson) => (
-      <li className="searchTerm" onClick={props.onClick}>
+      <li key={lesson} className="searchTerm" onClick={props.onClick}>
         {lesson}
       </li>
     ));
@@ -16,7 +16,7 @@ function FilterBar(props) {
   function renderTopics(topics) {
     let filterList = [];
     for (const topic in topics) {
-      const topicHeading = <h3 className="topicHeading">{topic}</h3>;
+      const topicHeading = <h3 key={topic} className="topicHeading">{topic}</h3>;
       filterList.push(
         <Collapsible trigger={topicHeading} expandIcon=">" className="topic">
           {renderLessons(topics[topic])}

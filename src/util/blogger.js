@@ -2,13 +2,18 @@ const blogId = "5261886283474622931";
 const ApiKey = "AIzaSyBvH1BdMybTRkss2zC-9R39-3CulpX6nsc";
 
 async function bloggerSearch(searchTerm) {
-  const request = `https://blogger.googleapis.com/v3/blogs/${blogId}/posts/search?q=${searchTerm}&key=${ApiKey}`
-  const response = await fetch(request);
-  const body = await response.json();
-  if(body.items){
-    return body.items;
+  const request = `https://blogger.googleapis.com/v3/blogs/${blogId}/posts/search?q=${searchTerm}&key=${ApiKey}`;
+  let body = [];
+  try {
+    const response = await fetch(request);
+    body = await response.json();
+    if (body.items) {
+      return body.items;
+    }
+  } catch (error) {
+    console.log(error);
   }
-  return [];
+  return body;
 
   // return [
   //   {

@@ -1,5 +1,6 @@
 import youtubeSearch from "../../util/youtube";
 import bloggerSearch from "../../util/blogger";
+import store from "storejs";
 
 async function searchForResults(e) {
   const searchTerm = e.target.innerHTML;
@@ -17,6 +18,7 @@ async function searchForResults(e) {
   let allSearches = [];
   //only search if searchTerm has not already been used
   if (!this.state.searches.hasOwnProperty(searchTerm)) {
+    alert("new search required");
     allSearches = await Promise.all([
       bloggerSearch(e.target.innerHTML),
       youtubeSearch(
@@ -62,6 +64,9 @@ async function searchForResults(e) {
     kiducationResults: kiducationResults,
     blogResults: blogResults,
     gridWidth: gridWidth,
+  });
+  store.set({
+    searches: this.state.searches,
   });
 }
 
