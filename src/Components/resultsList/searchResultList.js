@@ -1,6 +1,6 @@
 import "./searchResultList.css";
 import VideoSearchResults from "../videoSearchResults/videoSearchResults";
-import BlogSearchResults from "../BlogSearchResults/blogSearchResults";
+import BlogSearchResults from "../blogSearchResults/blogSearchResults";
 
 function SearchResultsList(props) {
   function createResultsList() {

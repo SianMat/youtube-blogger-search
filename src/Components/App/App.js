@@ -1,10 +1,10 @@
 import "./App.css";
 
-import SearchResultsList from "../SearchResultsList/searchResultList";
+import SearchResultsList from "../searchResultsList/searchResultList";
 import FilterBar from "../filterBar/filterBar";
 import searchForResults from "./searchForResults";
 import React from "react";
-import BlogContent from "../BlogSearchResults/blogContent";
+import BlogContent from "../blogSearchResults/blogContent";
 import store from "storejs";
 
 class App extends React.Component {
