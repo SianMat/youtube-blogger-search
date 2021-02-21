@@ -1,5 +1,5 @@
 import ReactPlayer from "react-player";
-import "../../../node_modules/react-player/";
+import "react-player";
 import "./videoCard.css";
 
 function VideoCard(props) {
