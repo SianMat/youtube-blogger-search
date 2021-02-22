@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This project was a learning exercise to start working with React and third Party APIs. The desktop app allows users to select a search term from a drop down menu and view relevant results from either of my YouTube channels and my blog.
+This project was an app I decided to make to practice with React and third Party APIs. The desktop app allows users to select a search term from a drop down menu and view relevant results from either of my YouTube channels or my blog.
 
 ## Technologies
 
@@ -15,7 +15,7 @@ This project was a learning exercise to start working with React and third Party
 
 ## Launch
 
-Click on [website link](https://60326f38b87c1f0007648baf--jovial-brahmagupta-7a0be8.netlify.app/ "Search My Stuff").
+Click on [website link](https://jovial-brahmagupta-7a0be8.netlify.app/ "Search My Stuff").
 
 ## Scope of functionalities and limitations
 
