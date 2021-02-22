@@ -1,8 +1,9 @@
+import config from "../config";
 const blogId = "5261886283474622931";
-const ApiKey = "AIzaSyBvH1BdMybTRkss2zC-9R39-3CulpX6nsc";
+const BLOGGER_KEY = config.BLOGGER_KEY;
 
 async function bloggerSearch(searchTerm) {
-  const request = `https://blogger.googleapis.com/v3/blogs/${blogId}/posts/search?q=${searchTerm}&key=${ApiKey}`;
+  const request = `https://blogger.googleapis.com/v3/blogs/${blogId}/posts/search?q=${searchTerm}&key=${BLOGGER_KEY}`;
   let results = [];
   try {
     const response = await fetch(request);

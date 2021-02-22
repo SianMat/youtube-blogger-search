@@ -1,6 +1,9 @@
 import youtubeSearch from "../../util/youtube";
 import bloggerSearch from "../../util/blogger";
 import store from "storejs";
+import config from "../../config";
+const OXMATH_KEY = config.OXMATH_KEY;
+const KIDUCATION_KEY = config.KIDUCATION_KEY;
 
 async function searchForResults(e) {
   const searchTerm = e.target.innerHTML;
@@ -20,15 +23,11 @@ async function searchForResults(e) {
   if (!this.state.searches.hasOwnProperty(searchTerm)) {
     allSearches = await Promise.all([
       bloggerSearch(e.target.innerHTML),
-      youtubeSearch(
-        e.target.innerHTML,
-        "UCFPUEHFAgnkp86HGVkc3l9A",
-        "AIzaSyCIlwORFT3Rz5N4NkrhdEk1sz_OkiMj_Cw"
-      ),
+      youtubeSearch(e.target.innerHTML, "UCFPUEHFAgnkp86HGVkc3l9A", OXMATH_KEY),
       youtubeSearch(
         e.target.innerHTML,
         "UCnWm2gOPjApqc5E0AhQvQ0Q",
-        "AIzaSyCXS0AXhqzQHu85FObMwDSGi-uwbIq8Ldo"
+        KIDUCATION_KEY
       ),
     ]);
     const blogSearch = allSearches[0];
