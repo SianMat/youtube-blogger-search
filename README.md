@@ -11,11 +11,11 @@ This project was an app I decided to make to practice with React and third Party
 - HTML5
 - CSS
 - Google API
-- Deployed with Netlify
+- Deployed with Surge
 
 ## Launch
 
-Click on [website link](https://jovial-brahmagupta-7a0be8.netlify.app/ "Search My Stuff").
+Click on [website link](http://proud-lunch.surge.sh/ "Search My Stuff").
 
 ## Scope of functionalities and limitations
 
