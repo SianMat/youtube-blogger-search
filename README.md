@@ -15,7 +15,7 @@ This project was an app I decided to make to practice with React and third Party
 
 ## Launch
 
-Click on [website link](http://proud-lunch.surge.sh/ "Search My Stuff").
+Click on [website link](http://common-cat.surge.sh/ "Search My Stuff").
 
 ## Scope of functionalities and limitations
 
